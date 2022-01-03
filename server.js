@@ -14,11 +14,11 @@ app.use(cors({ optionsSuccessStatus: 200 })); // some legacy browsers choke on 2
 app.use(express.static("public"));
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (req, res) {
+app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-app.get("/api/:date", function (req, res) {
+app.get("/api/:date", (req, res) => {
   const date = req.params.date;
   let unix;
   let utc;
@@ -35,7 +35,7 @@ app.get("/api/:date", function (req, res) {
   return res.json({ error: "Invalid Date" });
 });
 
-app.get("/api", function (req, res) {
+app.get("/api", (req, res) => {
   res.json({
     unix: new Date().getTime(),
     utc: new Date().toUTCString(),
